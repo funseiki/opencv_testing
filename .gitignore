@@ -1,0 +1,10 @@
+# /
+/Debug/
+/Release/
+/*.sdf
+/*.opensdf
+/*.suo
+
+# /Tutorials/
+/Tutorials/Debug/
+/Tutorials/Release/
