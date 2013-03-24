@@ -6,10 +6,10 @@
 using namespace cv;
 using namespace std;
 
-int main( int argc, char** argv )
+int basicTest(int argc, char** argv)
 {
 	Mat A, Gray;
-	char* imageName = "C:\\Users\\Vin\\Pictures\\OnePiece.jpg";
+	char * imageName = "..\\Images\\Original.png";
 	if(argc > 1)
 	{
 		imageName = argv[1];
@@ -23,7 +23,7 @@ int main( int argc, char** argv )
 
 	cvtColor(A, Gray, CV_BGR2GRAY);
 
-	imwrite("C:\\Users\\Vin\\Pictures\\OnePieceGray.jpg", Gray);
+	imwrite("..\\Images\\Gray.jpg", Gray);
 
 	namedWindow("Color Image", CV_WINDOW_AUTOSIZE);
 	namedWindow("Gray Image", CV_WINDOW_AUTOSIZE);
@@ -32,4 +32,11 @@ int main( int argc, char** argv )
 
 	waitKey(0);
 	return 0;
+}
+
+
+
+int main( int argc, char** argv )
+{
+	return basicTest(argc, argv);
 }
