@@ -34,9 +34,60 @@ int basicTest(int argc, char** argv)
 	return 0;
 }
 
+void doSomething(Mat initial, Mat blank)
+{
+	// Todo: Do something interesting and save it in 'blank'
+	initial.copyTo(blank);
+}
 
+int cameraTest()
+{
+	VideoCapture camera;
+	int cameraNumber = 0;
+	camera.open(cameraNumber);
+
+	if(!camera.isOpened())
+	{
+		cerr << "ERROR: NO CAMERA AVAILABLE!?" << endl;
+		exit(1);
+	}
+
+	camera.set(CV_CAP_PROP_FRAME_WIDTH, 640);
+	camera.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
+
+	// Main loop 
+	while(true)
+	{
+		Mat cameraFrame;
+
+		// Gets the current camera frame
+		camera >> cameraFrame;
+
+		if(cameraFrame.empty())
+		{
+			cerr << "ERROR: NO CAMERA FRAME!?" << endl;
+			exit(1);
+		}
+
+		// Output image to be drawn onto
+		Mat displayedFrame(cameraFrame.size(), CV_8UC3);
+
+		// Do something interesting to this frame
+		doSomething(cameraFrame, displayedFrame);
+
+		// Display the interesting thing
+		imshow("Cam", displayedFrame);
+
+		char keypress = waitKey(20);
+		if(keypress == 27)
+		{
+			break;
+		}
+	}
+}
 
 int main( int argc, char** argv )
 {
-	return basicTest(argc, argv);
+	cameraTest();
+	return 0;
 }
